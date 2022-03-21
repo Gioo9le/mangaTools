@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <title>Search results</title>
+</head>
+<body>
+    <label for="manga-name">{{name}}</label><br>
+        <a href="/">
+            <input type="button" value="Home" />
+         </a>
+         <ul>
+            {%for manga in mangas %}
+                <li>
+                    <img src="{{manga.img}}" alt="Girl in a jacket" width="50" height="60">
+                    {{manga.name}} - {{manga.author}}
+                    <form action="download_volumes" method="get">
+                        <input type="hidden" name="url" value="{{manga.url}}" />
+                        <select name="start_volume" id="start_volume">
+                            {% for volume_number in range(100) %}
+                                <option value="{{ volume_number }}">{{ volume_number }}</option>
+                            {% endfor %}
+                        </select>
+                        <select name="end_volume" id="end_volume">
+                            {% for volume_number in range(100) %}
+                                <option value="{{ volume_number }}">{{ volume_number }}</option>
+                            {% endfor %}
+                        </select>
+                        <button type="submit">Download</button>
+                    </form>
+                </li>
+            {%endfor%}
+         </ul>
+</body>
+</html>

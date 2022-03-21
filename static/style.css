@@ -1,0 +1,11 @@
+body{
+    font-family: 'Major Mono Display', monospace;
+    font-size: 40px;
+}
+ul{
+    list-style: none;
+}
+li{
+    list-style: none;
+    font-size: 20px;
+}
